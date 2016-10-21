@@ -1,0 +1,228 @@
+# French translations for dynacase-admin-uis package
+# Traductions françaises du paquet dynacase-admin-uis.
+# Copyright (C) 2013 THE dynacase-admin-uis'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the dynacase-admin-uis package.
+# Automatically generated, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: dynacase-admin-uis\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-20 15:07+0200\n"
+"PO-Revision-Date: 2016-10-20 15:08+0200\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#, php-format
+msgctxt "access"
+msgid "<p>Token <b>%s</b></br> has been create.</p>"
+msgstr ""
+
+#, php-format
+msgctxt "access"
+msgid "<p>Token <b>%s</b></br> has been deleted.</p>"
+msgstr ""
+
+msgid "AUTHENTUI:ADMIN_ACTIONS_LIST short_name"
+msgstr "Ui list"
+
+msgid "AUTHENTUI:AUTHENTUI"
+msgstr "Authentication"
+
+msgid "AUTHENTUI:AUTHENTUIDESCR"
+msgstr "Authentication management"
+
+msgid "AUTHENTUI:main Access"
+msgstr "Main access"
+
+#, php-format
+msgctxt "accessToken"
+msgid "Invalid date \"%s\" for token"
+msgstr ""
+
+msgctxt "accesstoken"
+msgid "Multiple"
+msgstr ""
+
+#, php-format
+msgctxt "accesstoken"
+msgid "No user match %s"
+msgstr ""
+
+msgctxt "accesstoken"
+msgid "Once"
+msgstr ""
+
+#, php-format
+msgctxt "access"
+msgid "Token %s not exists"
+msgstr ""
+
+msgid "Token Access"
+msgstr ""
+
+msgid "Token Data"
+msgstr ""
+
+msgid "Token Info"
+msgstr ""
+
+msgid "Token Methods"
+msgstr ""
+
+msgid "Token User Data"
+msgstr ""
+
+msgid "Token access"
+msgstr ""
+
+#, php-format
+msgctxt "access"
+msgid "User %s not exists"
+msgstr ""
+
+msgid "accesstoken:Add another key"
+msgstr "Add another key"
+
+msgid "accesstoken:Always"
+msgstr "Always"
+
+msgid "accesstoken:Cancel"
+msgstr "Cancel"
+
+msgid "accesstoken:Confirm token deletion"
+msgstr "Confirm token deletion"
+
+msgid "accesstoken:Create a new token"
+msgstr "Create a new token"
+
+msgid "accesstoken:Delete token. Are you sure ?"
+msgstr "Delete token. Are you sure ?"
+
+msgid "accesstoken:Last created token is"
+msgstr "Last created token is"
+
+msgid "accesstoken:Never expire"
+msgstr "Never expire"
+
+msgid "accesstoken:New token"
+msgstr "New authorization token"
+
+msgid "accesstoken:One shot"
+msgstr "One shot"
+
+msgid "accesstoken:Show expired tokens"
+msgstr "Show expired tokens"
+
+msgid "accesstoken:Token Deletion"
+msgstr "Token Deletion"
+
+msgid "accesstoken:User login"
+msgstr "User login"
+
+msgid "accesstoken:allapplication"
+msgstr "All open actions"
+
+msgid "accesstoken:author"
+msgstr "Author"
+
+msgid "accesstoken:context"
+msgstr "Context"
+
+msgid "accesstoken:date"
+msgstr "Expiration"
+
+msgid "accesstoken:description"
+msgstr "Description"
+
+msgid "accesstoken:expandable"
+msgstr "Single usage"
+
+msgid "accesstoken:expire"
+msgstr "Expiration date"
+
+msgid "accesstoken:parameterKey"
+msgstr "Other context keys"
+
+msgid "accesstoken:parameterValue"
+msgstr "Key value"
+
+msgid "accesstoken:token"
+msgstr "Token"
+
+msgid "accesstoken:user"
+msgstr "User"
+
+#~ msgid "access:ADMIN_ACTIONS_LIST short_name"
+#~ msgstr "Accessibility"
+
+#~ msgid "access:All"
+#~ msgstr "All"
+
+#~ msgid "access:Close"
+#~ msgstr "Close"
+
+#~ msgid "access:Group"
+#~ msgstr "Group"
+
+#~ msgid "access:No matching record found"
+#~ msgstr "No matching record found"
+
+#~ msgid "access:No result"
+#~ msgstr "No result"
+
+#~ msgid "access:Processing"
+#~ msgstr "Processing"
+
+#~ msgid "access:Show All Items"
+#~ msgstr "Show All Items"
+
+#~ msgid "access:Showing _START_ to _END_ of _TOTAL_ "
+#~ msgstr "Showing _START_ to _END_ of _TOTAL_ "
+
+#~ msgid "access:appname"
+#~ msgstr "Application name"
+
+#~ msgid "access:description"
+#~ msgstr "description"
+
+#~ msgid "access:long_name"
+#~ msgstr "Complete name"
+
+#~ msgid "access:modify"
+#~ msgstr "modify"
+
+#~ msgid "access:no account match '%s'"
+#~ msgstr "no account match '%s'"
+
+#~ msgid "access:no application match '%s'"
+#~ msgstr "no application match '%s'"
+
+#~ msgid "access:short_name"
+#~ msgstr "Short name"
+
+#~ msgid "access:userlogin"
+#~ msgstr "Login"
+
+#~ msgid "accessfor"
+#~ msgstr "Access control for"
+
+#~ msgid "accesss:Close"
+#~ msgstr "Close"
+
+#~ msgid "accounttype"
+#~ msgstr "Account type"
+
+#~ msgid "appdesc"
+#~ msgstr "Application description"
+
+#~ msgid "controlaccess"
+#~ msgstr "Access control"
+
+#~ msgid "permissions"
+#~ msgstr "Acl"

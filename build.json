@@ -1,0 +1,13 @@
+{
+    "moduleName" : "dynacase-authent-ui",
+    "version" : "1.0.0",
+    "release" : "0",
+    "application" : ["AUTHENTUI"],
+    "includedPath" : ["locale"],
+    "lang" : ["fr","en"],
+    "csvParam" : {"enclosure" : "\"", "delimiter": ";"},
+    "dynacase-devtool" : {
+            "uri" : "git@github.com:Anakeen/development-tools.git",
+            "tag" : "3.2"
+    }
+}
