@@ -12,42 +12,45 @@ function tokenInfo(Action & $action)
     $expendableFalse=___("Multiple", "accesstoken");
     $token=new UserToken($action->dbaccess, $tokenId);
     if (! $token->isAffected()) {
-        $action->exitError(sprintf("Token %s not exists", $tokenId));
+        $err=sprintf("Token %s not exists", $tokenId);
     } else {
         $info=$token->getValues();
         foreach ($info as $k=>$v) {
-            $action->lay->eset($k, $v);
+            $info[$k]=$v;
         }
 
         $u=new Account($action->dbaccess, $token->userid);
         if ($u->isAffected()) {
-            $action->lay->set("user", sprintf("%s %s (%s)", $u->firstname, $u->lastname, $u->login));
+
+            $info["user"]=sprintf("%s %s (%s)", $u->firstname, $u->lastname, $u->login);
         } else {
-            $action->lay->set("user", $token->userid);
+             $info["user"]=$token->userid;
         }
         $u=new Account($action->dbaccess, $token->authorid);
         if ($u->isAffected()) {
-            $action->lay->set("author", sprintf("%s %s (%s)", $u->firstname, $u->lastname, $u->login));
+             $info["author"]= sprintf("%s %s (%s)", $u->firstname, $u->lastname, $u->login);
         } else {
-            $action->lay->set("author", $token->authorid);
+             $info["author"]= $token->authorid;
         }
         if ($token->context) {
             $context=unserialize($token->context);
-            if (is_array($context)) {
-                $tContext = [];
-                ksort($context);
-                foreach ($context as $k => $v) {
-                    $tContext[] = sprintf("<li><b>%s</b>&nbsp;:&nbsp;<i>%s</i></li>", $k, $v);
-                }
-                $scontext = "<ul>".implode(" ", $tContext)."</ul>";
-                $action->lay->set("context", $scontext);
+            $info["context"]=$context;
 
-            }
 
         }
-        $action->lay->set("expendable", ($token->expendable) ? $expendableTrue : $expendableFalse);
+
+        $info["expendable"]= ($token->expendable === "t");
+        $info["title"]= ($token->description) ? $token->description : $token->token;
     }
 
-    
+    if ($err) {
+        header("HTTP/1.0 400 Error");
+        $response = ["success" => false, "error" => $err];
+    } else {
+        $response = ["success" => true, "data" => $info];
+
+    }
+    $action->lay->noparse = true;
+    $action->lay->template = json_encode($response);
 
 }

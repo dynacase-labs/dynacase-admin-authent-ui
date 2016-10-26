@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dynacase-admin-uis\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-20 15:07+0200\n"
-"PO-Revision-Date: 2016-10-20 15:08+0200\n"
+"POT-Creation-Date: 2016-10-26 14:16+0200\n"
+"PO-Revision-Date: 2016-10-26 14:21+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: fr\n"
@@ -90,7 +90,7 @@ msgid "accesstoken:Add another key"
 msgstr "Add another key"
 
 msgid "accesstoken:Always"
-msgstr "Always"
+msgstr "Reusable"
 
 msgid "accesstoken:Cancel"
 msgstr "Cancel"
@@ -101,8 +101,17 @@ msgstr "Confirm token deletion"
 msgid "accesstoken:Create a new token"
 msgstr "Create a new token"
 
+msgid "accesstoken:Create the token"
+msgstr "Create the token"
+
+msgid "accesstoken:Delete the token"
+msgstr "Delete the token"
+
 msgid "accesstoken:Delete token. Are you sure ?"
 msgstr "Delete token. Are you sure ?"
+
+msgid "accesstoken:Identifier"
+msgstr "Identifier"
 
 msgid "accesstoken:Last created token is"
 msgstr "Last created token is"
@@ -122,8 +131,14 @@ msgstr "Show expired tokens"
 msgid "accesstoken:Token Deletion"
 msgstr "Token Deletion"
 
+msgid "accesstoken:Token info"
+msgstr "Token info"
+
 msgid "accesstoken:User login"
 msgstr "User login"
+
+msgid "accesstoken:Write a description"
+msgstr "Write a description"
 
 msgid "accesstoken:allapplication"
 msgstr "All open actions"
@@ -137,6 +152,9 @@ msgstr "Context"
 msgid "accesstoken:date"
 msgstr "Expiration"
 
+msgid "accesstoken:delete"
+msgstr "Delete"
+
 msgid "accesstoken:description"
 msgstr "Description"
 
@@ -145,6 +163,12 @@ msgstr "Single usage"
 
 msgid "accesstoken:expire"
 msgstr "Expiration date"
+
+msgid "accesstoken:infinity"
+msgstr "Infinity"
+
+msgid "accesstoken:oruntil"
+msgstr "or until"
 
 msgid "accesstoken:parameterKey"
 msgstr "Other context keys"
@@ -158,71 +182,5 @@ msgstr "Token"
 msgid "accesstoken:user"
 msgstr "User"
 
-#~ msgid "access:ADMIN_ACTIONS_LIST short_name"
-#~ msgstr "Accessibility"
-
-#~ msgid "access:All"
-#~ msgstr "All"
-
-#~ msgid "access:Close"
-#~ msgstr "Close"
-
-#~ msgid "access:Group"
-#~ msgstr "Group"
-
-#~ msgid "access:No matching record found"
-#~ msgstr "No matching record found"
-
-#~ msgid "access:No result"
-#~ msgstr "No result"
-
-#~ msgid "access:Processing"
-#~ msgstr "Processing"
-
-#~ msgid "access:Show All Items"
-#~ msgstr "Show All Items"
-
-#~ msgid "access:Showing _START_ to _END_ of _TOTAL_ "
-#~ msgstr "Showing _START_ to _END_ of _TOTAL_ "
-
-#~ msgid "access:appname"
-#~ msgstr "Application name"
-
-#~ msgid "access:description"
-#~ msgstr "description"
-
-#~ msgid "access:long_name"
-#~ msgstr "Complete name"
-
-#~ msgid "access:modify"
-#~ msgstr "modify"
-
-#~ msgid "access:no account match '%s'"
-#~ msgstr "no account match '%s'"
-
-#~ msgid "access:no application match '%s'"
-#~ msgstr "no application match '%s'"
-
-#~ msgid "access:short_name"
-#~ msgstr "Short name"
-
-#~ msgid "access:userlogin"
-#~ msgstr "Login"
-
-#~ msgid "accessfor"
-#~ msgstr "Access control for"
-
-#~ msgid "accesss:Close"
-#~ msgstr "Close"
-
-#~ msgid "accounttype"
-#~ msgstr "Account type"
-
-#~ msgid "appdesc"
-#~ msgstr "Application description"
-
-#~ msgid "controlaccess"
-#~ msgstr "Access control"
-
-#~ msgid "permissions"
-#~ msgstr "Acl"
+msgid "accesstoken:validated"
+msgstr "Validation date"

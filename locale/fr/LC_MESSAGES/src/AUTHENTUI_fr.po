@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dynacase-admin-uis\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-20 15:07+0200\n"
-"PO-Revision-Date: 2016-10-20 15:08+0200\n"
+"POT-Creation-Date: 2016-10-26 14:16+0200\n"
+"PO-Revision-Date: 2016-10-26 14:17+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: fr\n"
@@ -90,7 +90,7 @@ msgid "accesstoken:Add another key"
 msgstr "Ajouter un autre paramètre de contexte"
 
 msgid "accesstoken:Always"
-msgstr "Multiple"
+msgstr "Réutilisable"
 
 msgid "accesstoken:Cancel"
 msgstr "Annuler"
@@ -99,13 +99,22 @@ msgid "accesstoken:Confirm token deletion"
 msgstr "Je confirme la suppression du jeton"
 
 msgid "accesstoken:Create a new token"
-msgstr "Créer un nouveau jeton d'authentification"
+msgstr "Créer un nouveau jeton"
+
+msgid "accesstoken:Create the token"
+msgstr "Créer le jeton"
+
+msgid "accesstoken:Delete the token"
+msgstr "Supprimer le jeton"
 
 msgid "accesstoken:Delete token. Are you sure ?"
 msgstr "Suppression du jeton d'authentification. Êtes-vous sûr ?"
 
+msgid "accesstoken:Identifier"
+msgstr "Identifiant"
+
 msgid "accesstoken:Last created token is"
-msgstr "Dernièr jeton créé"
+msgstr "Dernier jeton créé"
 
 msgid "accesstoken:Never expire"
 msgstr "Pas d'expiration"
@@ -122,8 +131,14 @@ msgstr "Afficher les jetons expirés"
 msgid "accesstoken:Token Deletion"
 msgstr "Suppression du jeton"
 
+msgid "accesstoken:Token info"
+msgstr "Information"
+
 msgid "accesstoken:User login"
 msgstr "Identifiant utilisateur (login)"
+
+msgid "accesstoken:Write a description"
+msgstr "Indiquer une description"
 
 msgid "accesstoken:allapplication"
 msgstr "Toutes actions disponibles"
@@ -137,6 +152,9 @@ msgstr "Contexte"
 msgid "accesstoken:date"
 msgstr "Expiration"
 
+msgid "accesstoken:delete"
+msgstr "Supprimer"
+
 msgid "accesstoken:description"
 msgstr "Description"
 
@@ -145,6 +163,12 @@ msgstr "Usage"
 
 msgid "accesstoken:expire"
 msgstr "Date d'expiration"
+
+msgid "accesstoken:infinity"
+msgstr "Infinie"
+
+msgid "accesstoken:oruntil"
+msgstr "ou jusqu'au"
 
 msgid "accesstoken:parameterKey"
 msgstr "Autres arguments"
@@ -157,3 +181,6 @@ msgstr "Jeton"
 
 msgid "accesstoken:user"
 msgstr "Utilisateur"
+
+msgid "accesstoken:validated"
+msgstr "Validité"

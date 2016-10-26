@@ -1,5 +1,11 @@
 /* Token Access */
 
+/* hide somes columns */
+.token-context, .token-expendable {
+    display:none;
+}
+
+
 .dataTables_wrapper .dataTables_paginate {
     float:none;
 }
@@ -14,7 +20,7 @@ td.token-id input {
     padding: 2px 2px;
 }
 
-.token-expandable input {
+.token-expendable input {
     width:3em;
 }
 
@@ -30,6 +36,11 @@ input.ui-button {
     cursor: text;
     background: white;
     border-radius:3px;
+    -webkit-user-select: initial;
+}
+
+input.ui-button:active {
+    background: white;
 }
 input.ui-button[disabled] {
     color:grey;
@@ -58,18 +69,24 @@ table.token tbody tr:hover {
 
 .token-info-button {
     padding:2px;
+    /*
     border-color:transparent;
 
-    background: none;
+    background: none;*/
 }
 
-.token-info-data ul {
+.token-info-data ul, .token-info-data ol {
     padding-left:2em;
     margin: 0;
 }
 .token-info-data td, .token-info-data th  {
     vertical-align: top;
     text-align: left;
+}
+
+
+.token-info-data pre {
+    margin: 0;
 }
 .token-info-selected {
     outline:solid 1px #14AAFF;
@@ -80,6 +97,17 @@ table.token tbody tr:hover {
 }
 .token-expendable  {
     width:30px;
+}
+table.token thead th.token-count-info {
+    padding: 3px 10px;
+    color: #333;
+    font-style: italic;
+}
+table.token thead th {
+    border:none;
+}
+table.token thead tr:last-child th  {
+    border-bottom:solid 1px grey;
 }
 
 table.token.dataTable tbody td {
@@ -102,34 +130,58 @@ table.dataTable tbody tr.token-added {
     50% {  background-color: #47bc43
     }
 }
-form.token-form-add {
+.token-form {
     border:solid 1px grey;
     background-color: #f1f1f1;
     display: inline-block;
     padding:3px;
     margin:5px;
 }
-form.token-form-add select {
+.token-form select {
     padding:3px;
 }
 
-form.token-form-add label {
+.token-form .label {
     display:block;
+    padding:0.3em;
 }
-form.token-form-add .token-add {
+
+.token-form .context-select,
+.token-form .context-param {
+    width:100%;
+}
+
+.token-form .context-param input{
+    width:calc(100% - 30px) ;
+}
+.token-form .context-param th {
+    text-align: left;
+}
+
+.token-form .token-add {
     float: right;
 }
-form.token-form-add label span.label{
-    width:10em;
-    text-align: right;
-    display:inline-block;
-    vertical-align: top;
-    padding:3px;
-    margin-right:5px;
+.token-delete.ui-button {
+    background-color: #ff6172;
+    float: right;
+}
+.token-confirm-delete {
+    background-color: #D03131;
+    color: white;
+}
+.token-add-key {
+    margin-right: 2em;
+}
+.token-form input[name=description] {
+    width: calc(100% - 30px);
 }
 
-input[name=user] {
-    width:calc(100% - 24px);
+.token-form .ui-checkboxradio-label{
+    margin-right: 3em;
+    min-width:10em;
+}
+input[name=user], input[name=author], input[name=tokenid] {
+    width:calc(100% - 30px);
 }
 input[name=expiredate] {
     width:10em;
@@ -138,13 +190,36 @@ input[name=expiretime] {
     width:5em;
 }
 
-.token-infinity--selected, .token-infinity--selected:focus {
-    background-color:#A3ECB0;
+.token-info .token-add-key {
+    display:none;
+}
+.token-info .ui-state-disabled  {
+    opacity: .65;
 }
 
+.token-info  input:disabled.ui-button.ui-widget {
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-radius: 0;
+    border-right-color: transparent;
+}
+.token-infinity.token-infinity--selected, .token-infinity--selected:focus {
+    background-color: #007FFF;
+    color: white;
+}
+.token-infinity--selected + span {
+    color: grey;
+}
+
+.token-infinity {
+    color: grey;
+}
 .ui-widget button.token-infinity {
-    font-size: 23px;
     padding: 0 5px;
+}
+.token-infinity--symbol {
+    font-size: 23px;
+    vertical-align: middle;
 }
 .token-header-nav {
     float:right;

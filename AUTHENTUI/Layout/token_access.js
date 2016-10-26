@@ -38,7 +38,7 @@ $(document).ready(function ()
 
     $token.dataTable({
 
-        "dom": 'i<"token-header-add"><"token-header-nav"p>er',
+        "dom": '<"token-header-add"><"token-header-nav"p>eri',
         "paging": true,
         "pageLength": 20,
         "ordering": false,
@@ -50,7 +50,7 @@ $(document).ready(function ()
         processing: true,
         serverSide: true,
         ajax: {
-            url: "?app=AUTHENTUI&action=TOKEN_DATA",
+            url: $token.data("tokenUrl"),
             type: "POST",
             data: function (d)
             {
@@ -60,11 +60,11 @@ $(document).ready(function ()
         },
         columns: [
             { data: 'button', "class": "token-button" },
+            { data: 'description', "class": "token-description" },
             { data: 'token', "class": "token-id" },
             { data: 'user', "class": "token-user" },
             { data: 'expire', "class": "token-expire" },
             { data: 'expendable', "class": "token-expendable" },
-            { data: 'description', "class": "token-description" },
             { data: 'context', "class": "token-context" }
         ],
         "initComplete": function (settings)
@@ -74,7 +74,10 @@ $(document).ready(function ()
             $("#ctoken-expired").checkboxradio().on("click", function ()
             {
                 tokenTable.draw();
-            });  // Apply the search
+            });
+            $(".token-form input[type=radio]").checkboxradio();
+            $(".ui-checkboxradio-icon.ui-state-hover").removeClass("ui-state-hover");
+            // Apply the search
             tokenTable.columns().eq(0).each(function (colIdx)
             {
                 $('input', tokenTable.column(colIdx).header()).on('keypress', function (e)
@@ -90,25 +93,19 @@ $(document).ready(function ()
                         .search(this.value);
                 });
             });
-            $(".token th input, .token-form-add input").addClass("ui-button ui-widget");
-            $(".token-form-add button").button();
+            $(".token th input, .token-form input").addClass("ui-button ui-widget");
+            $(".token-form button").button();
+            $(".token-count-info").append($(".dataTables_info"));
 
             settings.oInit.customExpired(settings);
-
         },
         "drawCallback": function (settings)
         {
-            // Add delete button
+            // Add info button
             $(".token-button a", settings.nTBody).button({
-                icon: "ui-icon-trash",
-                "classes": { "ui-button": "token-delete" }
+                icon: "ui-icon-info",
+                "classes": { "ui-button": "token-info-button" }
             });
-
-            $(".token-info-anchor", settings.nTBody).button({
-            icon: "ui-icon-info",
-            "classes": { "ui-button": "token-info-button" }
-        });
-
 
 
             settings.oInit.customExpired(settings);
@@ -116,15 +113,17 @@ $(document).ready(function ()
         },
         "rowCallback": function (row, data)
         {
-            var $tokenCell=$('.token-id', row);
+            var $tokenCell = $('.token-id', row);
             if (data.hasExpired) {
                 $('.token-expire', row).addClass("token-expired");
             }
             $tokenCell.html($("<input type='text'/>").attr("readonly", "readonly").attr("size", "40").val(data.token));
-            $tokenCell.append($("<a/>").addClass("token-info-anchor"));
+
             if (data.token === $token.data("addedToken")) {
                 $(row).addClass("token-added");
             }
+            $(row).attr("data-token", data.token);
+
         },
         "customExpired": function (settings)
         {
@@ -153,20 +152,24 @@ $(document).ready(function ()
         $(this).button("disable"); // Prevent double click
     });
 
-    $token.on("click", ".token-delete", function ()
+    $("body").on("click", ".token-delete", function ()
     {
         var $dialog = $("#token-deletion-confirm");
-        var $tr = $(this).closest("tr");
-        var token = $tr.find(".token-id input").val();
+        var token = $(this).data("tokenid");
+        var $tr = $token.find('tr[data-token="' + token + '"]');
 
         $tr.addClass("token-to-delete").removeClass("token-added");
-        $dialog.attr("title", token);
+        $dialog.attr("title", $(".token-info").dialog("option", "title"));
 
         $dialog.dialog({
             resizable: false,
             height: "auto",
             width: 400,
             modal: true,
+            close: function ()
+            {
+                $tr.removeClass("token-to-delete");
+            },
             buttons: [
                 {
                     text: $dialog.data("close"),
@@ -180,10 +183,14 @@ $(document).ready(function ()
                 {
                     text: $dialog.data("confirm"),
 
-                    icon: "ui-icon-trash",
+                    "class": "token-confirm-delete",
+                    icon: "ui-icon-trash ",
+
                     "click": function ()
                     {
                         var url = "?app=AUTHENTUI&action=TOKEN_METHOD&method=delete&token=" + token;
+                        var $info = $(".token-info");
+                        $info.dialog("close");
                         $.getJSON(url).done(function (data)
                         {
 
@@ -213,35 +220,101 @@ $(document).ready(function ()
             ]
 
         });
+
+
     });
-    $token.on("click", ".token-info-anchor", function ()
+    $token.on("click", ".token-info-button", function ()
     {
         var $tr = $(this).closest("tr");
         var token = $tr.find(".token-id input").val();
         var $info = $(".token-info");
 
-        if ($info.length === 0) {
-            $info = $("<div/>").addClass("token-info");
+        if (!$info.data("uiDialog")) {
+
             $info.dialog({
                 width: "auto",
                 hide: false,
                 show: false,
-                close: function () {
+                close: function ()
+                {
                     $(".token-info-selected").removeClass("token-info-selected");
                 }
             });
         } else {
             $info.dialog("close");
         }
-       // $(".token-info-selected").removeClass(".token-info-selected");
+        // $(".token-info-selected").removeClass(".token-info-selected");
         $tr.addClass("token-info-selected");
-        $.ajax(
-            {
-                url: "?app=AUTHENTUI&action=TOKEN_INFO&token=" + token
-            }).done(function (data)
+        $.getJSON(
+            "?app=AUTHENTUI&action=TOKEN_INFO&token=" + token
+        ).done(function (info)
         {
-            $info.html(data);
-            $info.dialog("option", "title", $info.find(">div").attr("title"));
+            var data = info.data;
+            var $ctxAdd = $info.find(".token-add-key");
+            $info.find(".token-delete").button({
+                icon: "ui-icon-trash",
+                "classes": { "ui-button": "token-delete" }
+            }).data("tokenid", data.token);
+
+            $info.dialog("option", "title", data.title);
+            $info.find("input[name=description]").val(data.description);
+            $info.find("input[name=author]").val(data.author);
+            $info.find("input[name=tokenid]").val(data.token);
+            $info.find("input[name=user]").val(data.user);
+
+
+            if (data.expire === "infinity") {
+                $info.find("input[name=expiredate]").val("");
+                $info.find("input[name=expiretime]").val("");
+            } else {
+                $info.find("input[name=expiredate]").val(data.expire.substring(0, 10));
+                $info.find("input[name=expiretime]").val(data.expire.substring(11));
+            }
+
+            $info.find("input[name=expireinfinite]").val((data.expire === "infinity") ? "false" : "true");
+
+            $info.find(".token-infinity").button("enable");
+            $info.find(".token-infinity").trigger("click");
+            $info.find(".token-infinity").button("disable");
+
+            $info.find("input[type=radio]").checkboxradio("enable");
+            if (data.expendable) {
+                $info.find("input[name=expandable][value=one]").trigger("click");
+            } else {
+                $info.find("input[name=expandable][value=always]").trigger("click");
+            }
+            $info.find("input").prop("disabled", true);
+            $info.find("input[type=radio]").checkboxradio("disable");
+
+            $info.find(".context-param tbody tr").remove();
+
+            $info.find("select").prop("disabled", true);
+            if (data.context) {
+                var $option = $info.find('option');
+                $option.last().prop("selected", true);
+                if (data.context.app && data.context.action) {
+                    $option = $info.find('option[value="' + data.context.app + ':' + data.context.action + '"]');
+                    if ($option.length > 0) {
+                        $option.prop("selected", true);
+                        data.context.app = undefined;
+                        data.context.action = undefined;
+                    }
+                }
+
+                for (var key in data.context) {
+                    if (data.context[key] !== undefined) {
+                        $ctxAdd.trigger("click");
+                        $info.find(".context-param tbody input.token-param-key").last().val(key);
+                        $info.find(".context-param tbody input.token-param-val").last().val(data.context[key]);
+                    }
+                }
+                if ($info.find(".context-param tbody tr").length === 0) {
+                    $info.find(".context-param thead").hide();
+                } else {
+                    $info.find(".context-param thead").show();
+                }
+            }
+
             $info.dialog("open");
         });
     });
@@ -294,23 +367,24 @@ $(document).ready(function ()
     });
 
 
-    $("#iuser").on("change", function ()
+    $("#iuser").combobox({
+        source: "?app=AUTHENTUI&action=TOKEN_USERDATA"
+    });
+
+    $("#iuser, #idescription").on("change", function ()
     {
-        if ($(this).val()) {
+        if ($("#iuser").val() && $("#idescription").val()) {
             $(".token-add").button("enable");
         } else {
             $(".token-add").button("disable");
         }
-    }).combobox({
-        source: "?app=AUTHENTUI&action=TOKEN_USERDATA"
     });
-
 
     $(".lastToken").hide();
 
     $(".token-infinity").on("click", function (event)
     {
-        var $input = $("input[name=expireinfinite]");
+        var $input = $(this).parent().find("input[name=expireinfinite]");
         var value = $input.val();
         event.preventDefault();
 
@@ -322,7 +396,6 @@ $(document).ready(function ()
             $input.val("false");
             $(this).removeClass("token-infinity--selected");
             $("input[name=expiredate], input[name=expiretime]").prop("disabled", false);
-
         }
     });
 
