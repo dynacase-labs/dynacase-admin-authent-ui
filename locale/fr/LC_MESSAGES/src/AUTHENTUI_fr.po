@@ -1,0 +1,186 @@
+# French translations for dynacase-admin-uis package
+# Traductions françaises du paquet dynacase-admin-uis.
+# Copyright (C) 2013 THE dynacase-admin-uis'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the dynacase-admin-uis package.
+# Automatically generated, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: dynacase-admin-uis\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-26 14:16+0200\n"
+"PO-Revision-Date: 2016-10-26 14:17+0200\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#, php-format
+msgctxt "access"
+msgid "<p>Token <b>%s</b></br> has been create.</p>"
+msgstr "<p>Le jeton <b>%s</b></br> a été créé.</p>"
+
+#, php-format
+msgctxt "access"
+msgid "<p>Token <b>%s</b></br> has been deleted.</p>"
+msgstr "<p>Le jeton <b>%s</b></br> a été suprimé.</p>"
+
+msgid "AUTHENTUI:ADMIN_ACTIONS_LIST short_name"
+msgstr "Liste des ui d'authentifications"
+
+msgid "AUTHENTUI:AUTHENTUI"
+msgstr "Authentification"
+
+msgid "AUTHENTUI:AUTHENTUIDESCR"
+msgstr "Gestion de l'authentification"
+
+msgid "AUTHENTUI:main Access"
+msgstr "Accès principal"
+
+#, php-format
+msgctxt "accessToken"
+msgid "Invalid date \"%s\" for token"
+msgstr "Date \"%s\" invalide pour la création du jeton"
+
+msgctxt "accesstoken"
+msgid "Multiple"
+msgstr "Multiple"
+
+#, php-format
+msgctxt "accesstoken"
+msgid "No user match %s"
+msgstr "Aucun utilisateur ne correpond à \"%s\""
+
+msgctxt "accesstoken"
+msgid "Once"
+msgstr "Unique"
+
+#, php-format
+msgctxt "access"
+msgid "Token %s not exists"
+msgstr "Le jeton \"%s\" n'existe pas"
+
+msgid "Token Access"
+msgstr "Jetons d'accès aux applications"
+
+msgid "Token Data"
+msgstr "Données des jetons d'authentification"
+
+msgid "Token Info"
+msgstr "Information du jetons"
+
+msgid "Token Methods"
+msgstr "Méthodes de gestion des jetons d'authentification"
+
+msgid "Token User Data"
+msgstr "Liste des utilisateurs"
+
+msgid "Token access"
+msgstr "Jetons d'authentification"
+
+#, php-format
+msgctxt "access"
+msgid "User %s not exists"
+msgstr "L'utilisateur \"%s\" n'existe pas"
+
+msgid "accesstoken:Add another key"
+msgstr "Ajouter un autre paramètre de contexte"
+
+msgid "accesstoken:Always"
+msgstr "Réutilisable"
+
+msgid "accesstoken:Cancel"
+msgstr "Annuler"
+
+msgid "accesstoken:Confirm token deletion"
+msgstr "Je confirme la suppression du jeton"
+
+msgid "accesstoken:Create a new token"
+msgstr "Créer un nouveau jeton"
+
+msgid "accesstoken:Create the token"
+msgstr "Créer le jeton"
+
+msgid "accesstoken:Delete the token"
+msgstr "Supprimer le jeton"
+
+msgid "accesstoken:Delete token. Are you sure ?"
+msgstr "Suppression du jeton d'authentification. Êtes-vous sûr ?"
+
+msgid "accesstoken:Identifier"
+msgstr "Identifiant"
+
+msgid "accesstoken:Last created token is"
+msgstr "Dernier jeton créé"
+
+msgid "accesstoken:Never expire"
+msgstr "Pas d'expiration"
+
+msgid "accesstoken:New token"
+msgstr "Nouveau jeton d'authentification"
+
+msgid "accesstoken:One shot"
+msgstr "Unique"
+
+msgid "accesstoken:Show expired tokens"
+msgstr "Afficher les jetons expirés"
+
+msgid "accesstoken:Token Deletion"
+msgstr "Suppression du jeton"
+
+msgid "accesstoken:Token info"
+msgstr "Information"
+
+msgid "accesstoken:User login"
+msgstr "Identifiant utilisateur (login)"
+
+msgid "accesstoken:Write a description"
+msgstr "Indiquer une description"
+
+msgid "accesstoken:allapplication"
+msgstr "Toutes actions disponibles"
+
+msgid "accesstoken:author"
+msgstr "Auteur"
+
+msgid "accesstoken:context"
+msgstr "Contexte"
+
+msgid "accesstoken:date"
+msgstr "Expiration"
+
+msgid "accesstoken:delete"
+msgstr "Supprimer"
+
+msgid "accesstoken:description"
+msgstr "Description"
+
+msgid "accesstoken:expandable"
+msgstr "Usage"
+
+msgid "accesstoken:expire"
+msgstr "Date d'expiration"
+
+msgid "accesstoken:infinity"
+msgstr "Infinie"
+
+msgid "accesstoken:oruntil"
+msgstr "ou jusqu'au"
+
+msgid "accesstoken:parameterKey"
+msgstr "Autres arguments"
+
+msgid "accesstoken:parameterValue"
+msgstr "Valeurs"
+
+msgid "accesstoken:token"
+msgstr "Jeton"
+
+msgid "accesstoken:user"
+msgstr "Utilisateur"
+
+msgid "accesstoken:validated"
+msgstr "Validité"

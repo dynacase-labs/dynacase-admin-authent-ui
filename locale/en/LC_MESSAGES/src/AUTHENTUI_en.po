@@ -1,0 +1,186 @@
+# French translations for dynacase-admin-uis package
+# Traductions françaises du paquet dynacase-admin-uis.
+# Copyright (C) 2013 THE dynacase-admin-uis'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the dynacase-admin-uis package.
+# Automatically generated, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: dynacase-admin-uis\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-26 14:16+0200\n"
+"PO-Revision-Date: 2016-10-26 14:21+0200\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#, php-format
+msgctxt "access"
+msgid "<p>Token <b>%s</b></br> has been create.</p>"
+msgstr ""
+
+#, php-format
+msgctxt "access"
+msgid "<p>Token <b>%s</b></br> has been deleted.</p>"
+msgstr ""
+
+msgid "AUTHENTUI:ADMIN_ACTIONS_LIST short_name"
+msgstr "Ui list"
+
+msgid "AUTHENTUI:AUTHENTUI"
+msgstr "Authentication"
+
+msgid "AUTHENTUI:AUTHENTUIDESCR"
+msgstr "Authentication management"
+
+msgid "AUTHENTUI:main Access"
+msgstr "Main access"
+
+#, php-format
+msgctxt "accessToken"
+msgid "Invalid date \"%s\" for token"
+msgstr ""
+
+msgctxt "accesstoken"
+msgid "Multiple"
+msgstr ""
+
+#, php-format
+msgctxt "accesstoken"
+msgid "No user match %s"
+msgstr ""
+
+msgctxt "accesstoken"
+msgid "Once"
+msgstr ""
+
+#, php-format
+msgctxt "access"
+msgid "Token %s not exists"
+msgstr ""
+
+msgid "Token Access"
+msgstr ""
+
+msgid "Token Data"
+msgstr ""
+
+msgid "Token Info"
+msgstr ""
+
+msgid "Token Methods"
+msgstr ""
+
+msgid "Token User Data"
+msgstr ""
+
+msgid "Token access"
+msgstr ""
+
+#, php-format
+msgctxt "access"
+msgid "User %s not exists"
+msgstr ""
+
+msgid "accesstoken:Add another key"
+msgstr "Add another key"
+
+msgid "accesstoken:Always"
+msgstr "Reusable"
+
+msgid "accesstoken:Cancel"
+msgstr "Cancel"
+
+msgid "accesstoken:Confirm token deletion"
+msgstr "Confirm token deletion"
+
+msgid "accesstoken:Create a new token"
+msgstr "Create a new token"
+
+msgid "accesstoken:Create the token"
+msgstr "Create the token"
+
+msgid "accesstoken:Delete the token"
+msgstr "Delete the token"
+
+msgid "accesstoken:Delete token. Are you sure ?"
+msgstr "Delete token. Are you sure ?"
+
+msgid "accesstoken:Identifier"
+msgstr "Identifier"
+
+msgid "accesstoken:Last created token is"
+msgstr "Last created token is"
+
+msgid "accesstoken:Never expire"
+msgstr "Never expire"
+
+msgid "accesstoken:New token"
+msgstr "New authorization token"
+
+msgid "accesstoken:One shot"
+msgstr "One shot"
+
+msgid "accesstoken:Show expired tokens"
+msgstr "Show expired tokens"
+
+msgid "accesstoken:Token Deletion"
+msgstr "Token Deletion"
+
+msgid "accesstoken:Token info"
+msgstr "Token info"
+
+msgid "accesstoken:User login"
+msgstr "User login"
+
+msgid "accesstoken:Write a description"
+msgstr "Write a description"
+
+msgid "accesstoken:allapplication"
+msgstr "All open actions"
+
+msgid "accesstoken:author"
+msgstr "Author"
+
+msgid "accesstoken:context"
+msgstr "Context"
+
+msgid "accesstoken:date"
+msgstr "Expiration"
+
+msgid "accesstoken:delete"
+msgstr "Delete"
+
+msgid "accesstoken:description"
+msgstr "Description"
+
+msgid "accesstoken:expandable"
+msgstr "Single usage"
+
+msgid "accesstoken:expire"
+msgstr "Expiration date"
+
+msgid "accesstoken:infinity"
+msgstr "Infinity"
+
+msgid "accesstoken:oruntil"
+msgstr "or until"
+
+msgid "accesstoken:parameterKey"
+msgstr "Other context keys"
+
+msgid "accesstoken:parameterValue"
+msgstr "Key value"
+
+msgid "accesstoken:token"
+msgstr "Token"
+
+msgid "accesstoken:user"
+msgstr "User"
+
+msgid "accesstoken:validated"
+msgstr "Validation date"

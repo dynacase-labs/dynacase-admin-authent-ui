@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<module xmlns="urn:dynacase:webinst:module/1.0" name="@moduleName@" release="@release@" version="@version@">
+    <description>Dynacase_authent_ui</description>
+
+    <requires>
+        <module comp="ge" name="dynacase-core" version="3.2.23"/>
+        <module name="dynacase-jquery-dataTables-1.10-installer" comp="ge" version="1.10.11"/>
+        <module name="dynacase-jquery-ui-installer" comp="ge" version="1.12.0"/>
+    </requires>
+
+    <post-install>
+        <process command="programs/record_application AUTHENTUI"/>
+        <process command="programs/update_catalog"/>
+    </post-install>
+    <post-upgrade>
+        <process command="programs/pre_migration AUTHENTUI"/>
+        <process command="programs/record_application AUTHENTUI"/>
+        <process command="programs/post_migration AUTHENTUI"/>
+        <process command="programs/update_catalog"/>
+    </post-upgrade>
+</module>
