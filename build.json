@@ -1,5 +1,5 @@
 {
-    "moduleName" : "dynacase-authent-ui",
+    "moduleName" : "dynacase-admin-authent-ui",
     "version" : "1.0.0",
     "release" : "0",
     "application" : ["AUTHENTUI"],
