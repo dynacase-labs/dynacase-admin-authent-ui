@@ -92,6 +92,16 @@ table.token tbody tr:hover {
     outline:solid 1px #14AAFF;
 }
 
+.token-form th {
+    color:grey;
+}
+.token-info.token-form .label {
+    color:grey;
+}
+.token-info.token-form input.ui-button[disabled] {
+    color: #333;
+}
+
 .token-expire  {
     width:10em;
 }
@@ -115,13 +125,21 @@ table.token.dataTable tbody td {
     padding-bottom: 5px;
 }
 table.dataTable tbody tr.token-to-delete {
-    animation: token-red-blinker 3s linear infinite;
+   /* animation: token-red-blinker 30s linear infinite;*/
+
+    background-color: red;
+    background-image:linear-gradient(to right, #FFC8C8, transparent 50%, #FFC8C8);
+    background-attachment: fixed;
+    color:white
 }
 table.dataTable tbody tr {
     background-color: transparent;
 }
 table.dataTable tbody tr.token-added {
-    animation: token-green-blinker 3s linear infinite;
+    /*animation: token-green-blinker 30s linear infinite;*/
+    background-color: #C7F7C6;
+    background-image:linear-gradient(to right, #8db993, transparent 50%, #8db993);
+    background-attachment: fixed;
 }
 @keyframes token-red-blinker {
     50% {  background-color:red}
@@ -139,6 +157,10 @@ table.dataTable tbody tr.token-added {
 }
 .token-form select {
     padding:3px;
+}
+
+.token-form th {
+    font-weight: normal;
 }
 
 .token-form .label {
@@ -162,15 +184,23 @@ table.dataTable tbody tr.token-added {
     float: right;
 }
 .token-delete.ui-button {
-    background-color: #ff6172;
     float: right;
 }
-.token-confirm-delete {
-    background-color: #D03131;
+
+.ui-button--red.ui-button {
+    background-color: #ff6172;
     color: white;
 }
+.ui-button--red.ui-button:hover {
+    background-color: #ff2d38;
+    color: white;
+}
+.ui-button--red.ui-button .ui-icon
+{
+    background-image: url("../../lib/jquery-ui-1.12.0/images/ui-icons_ffffff_256x240.png");
+}
 .token-add-key {
-    margin-right: 2em;
+    margin-right: 1em;
 }
 .token-form input[name=description] {
     width: calc(100% - 30px);
@@ -197,7 +227,7 @@ input[name=expiretime] {
     opacity: .65;
 }
 
-.token-info  input:disabled.ui-button.ui-widget {
+.token-info  input[readonly].ui-button.ui-widget {
     border-top-color: transparent;
     border-left-color: transparent;
     border-radius: 0;
@@ -253,6 +283,8 @@ input[name=expiretime] {
 .ui-state-active .ui-icon {
   background-image: url("../../lib/jquery-ui-1.12.0/images/ui-icons_555555_256x240.png");
 }
+
+
 .ui-visual-focus, a.ui-button:focus {
     box-shadow: 0 0 1px 1px rgb(37, 153, 255);
     border: solid 1px white;
@@ -269,5 +301,9 @@ ul.ui-autocomplete {
 
 
 input[type=text] {
-    border: 1px solid #c5c5c5;
+    border: 1px solid #c5c5c5; /* use border to no had system decoration */
+}
+
+.ui-checkboxradio.ui-helper-hidden-accessible {
+    visibility: hidden;
 }

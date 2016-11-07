@@ -13,7 +13,7 @@ class tokenData
      */
     protected $q;
     protected $filterType;
-
+    
     public function __construct()
     {
         $this->expendableTrue = ___("Once", "accesstoken");
@@ -48,14 +48,15 @@ class tokenData
     {
         $this->showExpired = $showExpired;
     }
-
-    public function setFilterType($filterType) {
-        $this->filterType=$filterType;
+    
+    public function setFilterType($filterType)
+    {
+        $this->filterType = $filterType;
     }
-
+    
     public function getRawData()
     {
-
+        
         if (!$this->showExpired) {
             $this->q->addQuery("expire > now()");
         }
@@ -72,7 +73,9 @@ class tokenData
                 $col["search"]["value"] = trim($col["search"]["value"]);
                 if (!empty($col["search"]["value"])) {
                     if ($colName === "user") {
-                        simpleQuery("", sprintf("select id from users where login ~ '%s'", pg_escape_string($col["search"]["value"])) , $userIds, true, false);
+                        $sValue = pg_escape_string($col["search"]["value"]);
+                        simpleQuery("", sprintf("select id from users where coalesce(firstname,'') || ' ' || lastname  || '(' || login || ')' ~* '%s'", $sValue) 
+                        , $userIds, true, false);
                         if ($userIds) {
                             $this->q->addQuery(sprintf("userid in (%s)", implode(",", $userIds)));
                         } else {
@@ -111,14 +114,14 @@ class tokenData
                     ksort($context);
                     foreach ($context as $k => $v) {
                         if (is_array($v)) {
-                            $vs=[];
+                            $vs = [];
                             foreach ($v as $kk => $vv) {
                                 if (is_array($vv)) {
-                                    $vv=implode(",", $vv);
+                                    $vv = implode(",", $vv);
                                 }
-                                $vs[]=sprintf("%s : %s", $kk, print_r($vv, true));
+                                $vs[] = sprintf("%s : %s", $kk, print_r($vv, true));
                             }
-                            $v=implode(", ", $vs);
+                            $v = implode(", ", $vs);
                         }
                         $tContext[] = sprintf("<span><b>%s</b>&nbsp;:&nbsp;<i>%s</i></span>", $k, print_r($v, true));
                     }
@@ -130,10 +133,10 @@ class tokenData
                 $displayData[] = ["token" => $tokenRow["token"], "description" => $tokenRow["description"], "userid" => $tokenRow["userid"], "expire" => $tokenRow["expire"], "context" => $scontext, "expendable" => ($tokenRow["expendable"]) ? $this->expendableTrue : $this->expendableFalse, "button" => "<a/>"];
             }
             
-            simpleQuery("", sprintf("select id, login from users where id in (%s)", implode(",", array_unique($userids))) , $usersData);
+            simpleQuery("", sprintf("select id, login, firstname, lastname from users where id in (%s)", implode(",", array_unique($userids))) , $usersData);
             $userLogin = [];
             foreach ($usersData as $userRow) {
-                $userLogin[$userRow["id"]] = $userRow["login"];
+                $userLogin[$userRow["id"]] = htmlspecialchars(sprintf("%s %s (%s)", $userRow["firstname"], $userRow["lastname"], $userRow["login"]));
             }
             $now = date("Y-m-d H:i:s");
             foreach ($displayData as & $row) {
@@ -155,11 +158,11 @@ class tokenData
     public function getTotalExpire()
     {
         if ($this->filterType) {
-            $filter= sprintf("type = '%s'", pg_escape_string($this->filterType));
+            $filter = sprintf("type = '%s'", pg_escape_string($this->filterType));
         } else {
-            $filter="(type is null or type = 'CORE')";
+            $filter = "(type is null or type = 'CORE')";
         }
-
+        
         simpleQuery("", "select count(*) from usertoken where expire < now() and $filter", $totalExpire, true, true);
         return $totalExpire;
     }
@@ -167,11 +170,11 @@ class tokenData
     public function getShowTotal()
     {
         if ($this->filterType) {
-        $filter= sprintf("type = '%s'", pg_escape_string($this->filterType));
-    } else {
-        $filter="(type is null or type = 'CORE')";
-    }
-
+            $filter = sprintf("type = '%s'", pg_escape_string($this->filterType));
+        } else {
+            $filter = "(type is null or type = 'CORE')";
+        }
+        
         if ($this->showExpired) {
             simpleQuery("", "select count(*) from usertoken where $filter", $total, true, true);
         } else {

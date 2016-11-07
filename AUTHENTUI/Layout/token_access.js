@@ -31,10 +31,30 @@ $(document).ready(function ()
     {
         var $tr = $(this).closest("table").find("tfoot tr");
         var $tbody = $(this).closest("table").find("tbody");
+        var $ntr=$tr.clone(true);
 
-        $tbody.append($tr.clone(true));
+        $ntr.find("select").selectmenu({
+            open: function (event, ui)
+            {
+                var $dialog = $(event.target).closest(".ui-dialog");
 
-    });
+                if ($dialog.length > 0) {
+                    var zIndex = parseInt($dialog.css("z-index"));
+                    var $menu = $(event.target).selectmenu("menuWidget").parent();
+
+                    if (zIndex > 100) {
+                        $dialog.css("z-index", 100);
+                    }
+                    $menu.css("z-index", zIndex + 1);
+                }
+            }
+        });
+
+        $tbody.append($ntr);
+
+    }).trigger("click");
+
+
 
     $token.dataTable({
 
@@ -52,10 +72,21 @@ $(document).ready(function ()
         ajax: {
             url: $token.data("tokenUrl"),
             type: "POST",
+                dataType: "json",
             data: function (d)
             {
                 d.showExpired = $("#ctoken-expired").attr("checked") === "checked";
                 return d;
+            },
+            error: function (response) {
+                try {
+                    var info=JSON.parse((response.responseText));
+                    if (info.error) {
+                        $(".dataTables_processing").hide();
+                        alert(info.error);
+                    }
+                } catch (e) {
+                }
             }
         },
         columns: [
@@ -166,9 +197,10 @@ $(document).ready(function ()
             height: "auto",
             width: 400,
             modal: true,
-            close: function ()
+            close: function (event)
             {
                 $tr.removeClass("token-to-delete");
+                            $(event.target).dialog("destroy");
             },
             buttons: [
                 {
@@ -183,7 +215,7 @@ $(document).ready(function ()
                 {
                     text: $dialog.data("confirm"),
 
-                    "class": "token-confirm-delete",
+                    "class": "token-confirm-delete ui-button--red",
                     icon: "ui-icon-trash ",
 
                     "click": function ()
@@ -228,6 +260,7 @@ $(document).ready(function ()
         var $tr = $(this).closest("tr");
         var token = $tr.find(".token-id input").val();
         var $info = $(".token-info");
+        var oldWidth=0;
 
         if (!$info.data("uiDialog")) {
 
@@ -235,9 +268,18 @@ $(document).ready(function ()
                 width: "auto",
                 hide: false,
                 show: false,
-                close: function ()
+                close: function (event)
                 {
+                    oldWidth=$info.width();
                     $(".token-info-selected").removeClass("token-info-selected");
+                    if (event.currentTarget) {
+                        $(event.target).dialog("destroy");
+                    }
+                },
+                open: function () {
+                    if (oldWidth) {
+                        $info.width(oldWidth);
+                    }
                 }
             });
         } else {
@@ -253,7 +295,7 @@ $(document).ready(function ()
             var $ctxAdd = $info.find(".token-add-key");
             $info.find(".token-delete").button({
                 icon: "ui-icon-trash",
-                "classes": { "ui-button": "token-delete" }
+                "classes": { "ui-button": "token-delete ui-button--red" }
             }).data("tokenid", data.token);
 
             $info.dialog("option", "title", data.title);
@@ -283,7 +325,7 @@ $(document).ready(function ()
             } else {
                 $info.find("input[name=expandable][value=always]").trigger("click");
             }
-            $info.find("input").prop("disabled", true);
+            $info.find("input").prop("readonly", true);
             $info.find("input[type=radio]").checkboxradio("disable");
 
             $info.find(".context-param tbody tr").remove();
@@ -301,11 +343,16 @@ $(document).ready(function ()
                     }
                 }
 
-                for (var key in data.context) {
-                    if (data.context[key] !== undefined) {
-                        $ctxAdd.trigger("click");
-                        $info.find(".context-param tbody input.token-param-key").last().val(key);
-                        $info.find(".context-param tbody input.token-param-val").last().val(data.context[key]);
+                if ($info.find(".context-param tfoot input.token-param-key").length > 0) {
+                    for (var key in data.context) {
+                        //noinspection JSUnfilteredForInLoop
+                        if (data.context[key] !== undefined) {
+                            $ctxAdd.trigger("click");
+                            //noinspection JSUnfilteredForInLoop
+                            $info.find(".context-param tbody input.token-param-key").last().val(key);
+                            //noinspection JSUnfilteredForInLoop
+                            $info.find(".context-param tbody input.token-param-val").last().val(data.context[key]);
+                        }
                     }
                 }
                 if ($info.find(".context-param tbody tr").length === 0) {
@@ -315,7 +362,9 @@ $(document).ready(function ()
                 }
             }
 
+            $token.trigger("token.info", [data]);
             $info.dialog("open");
+
         });
     });
 
@@ -362,7 +411,11 @@ $(document).ready(function ()
                 $div.html(response.responseText);
                 $div.find("link").remove();
             }
-            $div.dialog();
+            window.setTimeout(function ()
+            {
+                $(".token-add").button("enable");
+            }, 1000);
+            $div.dialog({title:"Error", modal:true});
         });
     });
 
@@ -399,7 +452,7 @@ $(document).ready(function ()
         }
     });
 
-    $("input[type=date]").each(function ()
+    $(".token-form input[type=date]").each(function ()
     {
         if (!this.valueAsDate) {
             var datepickerFr = {
