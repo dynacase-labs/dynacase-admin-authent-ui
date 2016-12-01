@@ -35,8 +35,8 @@ function tokenInfo(Action & $action)
         if ($token->context) {
             $context=unserialize($token->context);
             $info["context"]=$context;
-
-
+        } else {
+            $info["context"]=[];
         }
 
         $info["expendable"]= ($token->expendable === "t");
