@@ -56,7 +56,7 @@ $(document).ready(function ()
             this.input.addClass("ui-button");
 
             this.input.on("keypress, change", function () {
-                $originalInput.val("");
+                $originalInput.val($(this).val());
                 $originalInput.trigger("change");
             });
 
