@@ -64,10 +64,16 @@ function tokenMethod(Action & $action)
                 if ($expireInfinity === "true") {
                     $userToken->expire = "infinity";
                 } else {
-                    
-                    $userToken->expire = sprintf("%sT%s", $expireDate, $expireTime);
-                    if (!token_validateDate($userToken->expire)) {
-                        $err = sprintf(___("Invalid date \"%s\" for token", "accessToken") , $userToken->expire);
+                    if (!$expireDate) {
+                        $err = sprintf(___("Expire date is mandatory to create token", "accessToken"));
+                    } else {
+                        if (!$expireTime) {
+                            $expireTime = '23:59';
+                        }
+                        $userToken->expire = sprintf("%sT%s", $expireDate, $expireTime);
+                        if (!token_validateDate($userToken->expire)) {
+                            $err = sprintf(___("Invalid date \"%s\" for token", "accessToken"), $userToken->expire);
+                        }
                     }
                 }
                 if (!$err) {

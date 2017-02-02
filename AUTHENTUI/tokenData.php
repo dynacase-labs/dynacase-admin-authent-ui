@@ -136,7 +136,7 @@ class tokenData
             simpleQuery("", sprintf("select id, login, firstname, lastname from users where id in (%s)", implode(",", array_unique($userids))) , $usersData);
             $userLogin = [];
             foreach ($usersData as $userRow) {
-                $userLogin[$userRow["id"]] = htmlspecialchars(sprintf("%s %s (%s)", $userRow["firstname"], $userRow["lastname"], $userRow["login"]));
+                $userLogin[$userRow["id"]] = (sprintf("%s %s (%s)", $userRow["firstname"], $userRow["lastname"], $userRow["login"]));
             }
             $now = date("Y-m-d H:i:s");
             foreach ($displayData as & $row) {

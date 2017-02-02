@@ -145,11 +145,14 @@ $(document).ready(function ()
         "rowCallback": function (row, data)
         {
             var $tokenCell = $('.token-id', row);
+            var $descCell = $('.token-description', row);
+            var $descUser = $('.token-user', row);
             if (data.hasExpired) {
                 $('.token-expire', row).addClass("token-expired");
             }
             $tokenCell.html($("<input type='text'/>").attr("readonly", "readonly").attr("size", "40").val(data.token));
-
+            $descCell.text($descCell.html());
+            $descUser.text($descUser.html());
             if (data.token === $token.data("addedToken")) {
                 $(row).addClass("token-added");
             }
@@ -225,7 +228,6 @@ $(document).ready(function ()
                         $info.dialog("close");
                         $.getJSON(url).done(function (data)
                         {
-
                             tokenTable.draw();
                             if (data && data.message) {
                                 $('<div/>').html(data.message).dialog({
@@ -242,9 +244,19 @@ $(document).ready(function ()
 
                         }).fail(function (response)
                         {
-                            var $div = $('<div/>').html(response.responseText);
-                            $div.find("link").remove();
-                            $div.dialog();
+                            var $div = $('<div/>');
+                            try {
+                                var info=JSON.parse(response.responseText);
+                                if (info.error) {
+                                    $div.text(info.error);
+                                    tokenTable.draw();
+                                }
+                            } catch (e) {
+                                $div.html(response.responseText);
+                                $div.find("link").remove();
+                            }
+
+                            $div.dialog({title:"Error", modal:true});
                         });
                         $(this).dialog("close");
                     }
@@ -365,6 +377,19 @@ $(document).ready(function ()
             $token.trigger("token.info", [data]);
             $info.dialog("open");
 
+        }).fail(function (xhr) {
+
+            $info.dialog("close");
+            try {
+                var info=JSON.parse(xhr.responseText);
+                if (info.error) {
+                    var $div = $('<div/>');
+                    $div.text(info.error);
+                    $div.dialog({title:"Error", modal:true});
+                }
+            } catch (e) {
+                alert(xhr.responseText);
+            }
         });
     });
 
@@ -407,7 +432,6 @@ $(document).ready(function ()
                     $div.text(jsonResponse.error);
                 }
             } catch (e) {
-
                 $div.html(response.responseText);
                 $div.find("link").remove();
             }
